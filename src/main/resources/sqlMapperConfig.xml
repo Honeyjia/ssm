@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--1.加载properties配置文件 -->
+    <properties resource="jdbc.properties"/>
+    <!-- 2.定义别名-->
+    <typeAliases>
+       <!-- <typeAlias type="com.jiacool.domain.Account" alias="account"></typeAlias>-->
+        <!--指com.jiacool.domain 下的所有实体对象的别名都默认为account -->
+        <package name="com.jiacool.domain"></package>
+    </typeAliases>
+
+    <!--3.环境配置 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 4.加载映射文件-->
+    <mappers>
+        <!-- resource对应的是 相对位置-->
+<!--        <mapper resource="com/jiacool/mapper/AccountMapper.xml"></mapper>-->
+        <!-- 加载com.jiacool.mapper下的所有映射文件 -->
+        <package name="com.jiacool.mapper"/>
+    </mappers>
+
+</configuration>
